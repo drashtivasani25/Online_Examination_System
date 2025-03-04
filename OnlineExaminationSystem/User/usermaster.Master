@@ -1,0 +1,217 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="usermaster.master.cs" Inherits="OnlineExaminationSystem.User.usermaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Online Examination System Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* Header Styles */
+        .header-container {
+            background-color: #17a589;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        /* Logo */
+        .logo img {
+            height: 100px;
+        }
+
+        /* Navigation Menu */
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; 
+            width: 50%;
+        } 
+        .nav-menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap; 
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu li a:hover {
+            background-color: #2980b9;
+        }
+
+         .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
+        /* Logout Button */
+        .logout a {
+             background-color: white;
+            color: #17a589;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .logout a:hover {
+            background-color: #2980b9;
+            color: white;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+       @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .nav-menu {
+                 display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                right: 0;
+                background-color: #17a589;
+                width: 200px;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .nav-menu.show {
+                display: flex;
+            }
+
+            .nav-menu ul {
+                flex-direction: column; 
+                width: 100%; 
+            }
+
+            .nav-menu li {
+                width: 100%; 
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 60px;
+            }
+
+            .nav-menu.mobile li a {
+                font-size: 16px;
+            }
+
+            .logout a {
+                font-size: 16px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('show');
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%-- Header Start --%>
+        <div class="header-container">
+            <div class="header-inner">
+                <!-- Logo Section -->
+                <div class="logo">
+                    <a href="home_page.aspx?UserId=<%=Request.QueryString["UserId"] %>">
+                        <img src="/images/logo.jpg" alt="Logo" />
+                    </a>
+                </div>
+
+                <div class="hamburger" onclick="toggleMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                
+                <!-- Navigation Menu -->
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="home_page.aspx?UserId=<%=Request.QueryString["UserId"] %>">Home</a></li>
+                        <li><a href="about.aspx?UserId=<%=Request.QueryString["UserId"] %>">About</a></li>
+                        <li><a href="exam.aspx?UserId=<%=Request.QueryString["UserId"] %>">Exam</a></li>
+                        <li><a href="feedback.aspx?UserId=<%=Request.QueryString["UserId"] %>">Feedback</a></li>
+                    </ul><br />
+
+                     <!-- Logout Button -->
+                    <div class="logout">
+                        <a href="\loginpage.aspx">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Header End --%>
+
+        <%-- Main Content Placeholder --%>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <%-- Footer Start --%>
+        <div class="footer">
+            <p>&copy; 2025 Online Examination System. All Rights Reserved.</p>
+        </div>
+        <%-- Footer End --%>
+    </form>
+</body>
+</html>

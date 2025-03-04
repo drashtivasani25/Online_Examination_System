@@ -1,0 +1,82 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="teachermaster.master.cs" Inherits="OnlineExaminationSystem.Teacher.teachermaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Online Examination System Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            background: #333;
+            padding: 10px 20px;
+        }
+
+            .navbar .header {
+                color: white;
+                font-size: 22px;
+                font-weight: bold;
+                margin: 0;
+            }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                padding: 10px 15px;
+                transition: 0.3s;
+                border-radius: 5px;
+            }
+
+                .nav-links a:hover {
+                    background: #007bff;
+                }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+        }
+
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="navbar">
+                <h2 class="header">Welcome, Teacher</h2>
+                <div class="nav-links">
+                <a href="teacher_dashboard.aspx">Dashboard</a>
+                <a href="manage_questions.aspx">Manage Questions</a>
+                <a href="view_result.aspx">View Results</a>
+                <a href="\loginpage.aspx">Logout</a>
+                </div>
+            </div>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
